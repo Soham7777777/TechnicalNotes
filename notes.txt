@@ -1,0 +1,333 @@
+- `sudo apt update` and `sudo apt upgrade` after fresh installation of OS.
+- `sudo apt install python3.12-venv make gcc lua5.4 openjdk-21-jre-headless curl vim git-all httpie sqlite3 net-tools neofetch traceroute openssh-server`
+- `git config --global user.name "soham"`
+- `git config --global user.email "sohamjobanputra7@gmail.com"`
+- Install the ripgrep deb package: `sudo dpkg -i ripgrep_13.0.0_amd64.deb`
+- Install fzf: `git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf` and `sudo ~/.fzf/install`, move to bin `mv ~/.fzf ~/bin/fzf` and put `export PATH=$PATH:$HOME/bin/fzf/bin` to .bashrc
+- Uninstall fzf: `sudo ~/bin/fzf/uninstall`
+- Install vim-plug plugin manager: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
+- copy dot_vimrc2 from KINGSTONE to .vimrc: `cp /media/soham/KINGSTONE/assets/dot_vimrc2 ~/.vimrc`
+- add the below code to .bashrc:
+```sh
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden'
+  export FZF_DEFAULT_OPTS='-m'
+fi
+
+alias fzf_vim="nvim \$(fzf --preview='cat {}')"
+
+bind '"\C-f":"fzf_vim\n"'
+```
+
+---
+### Install nodejs:
+- downloaded nodejs prebuilt binaries from [here](https://nodejs.org/en/download/prebuilt-binaries)
+- extract the file using: `tar -xvf node-v20.14.0-linux-x64.tar.xz`
+- `mkdir ~/bin` and `mv node-v20.14.0-linux-x64 ~/bin/`
+- append the path in PATH at .bashrc file: `export PATH=$PATH:$HOME/bin/node-v20.14.0-linux-x64` so that `node` and `npm` will be available for interactive shells.
+- In order to delete nodejs just `rm -rf ~/bin/node-v20.14.0-linux-x64` and remove the export line.
+---
+
+---
+### Install and setup neovim + nerd-font + configuration:
+- Install neovim via tar: `sudo tar -C /opt -xzf nvim` and `export PATH="$PATH:/opt/nvim-linux64/bin"` to .bashrc
+- Uninstall neovim by `rm -rf ~/.config/nvim`, `rm -rf ~/.local/share/nvim` and `rm -rf ~/opt/nvim`
+
+- Install nerd fonts and set new terminal profile from KINGSTONE:
+    - `sudo cp ./JetBrainsMonoNLNerdFont-Regular.ttf /usr/share/fonts/truetype/`
+    - `sudo fc-cache -f -v`
+    - `dconf load /org/gnome/terminal/legacy/profiles:/ < terminal_profile.dconf`
+
+- Clone the configuration: `git clone https://github.com/Soham7777777/my-neovim-config.git ~/.config/nvim` 
+- open neovim, let it automatically install all plugins. After that `:MasonInstallAll`
+---
+
+---
+### Install from snap:
+- `sudo snap install dotnet-sdk --classic`
+- `sudo snap install icon-library`
+- `sudo snap install drawio`
+---
+
+- Install chrom deb file: `sudo dpkg -i google-chrome-stable_current_amd64.deb`
+- Install vscode deb file: `sudo dpkg -i code_1.90.0-1717531825_amd64.deb`
+- Install vscode extinsions: "C# base kit", "Flutter", "Vim", "Material Icon theme", "Live Server", "Python", "Error Lense", "MyPy Type Checker", "HTML CSS Support", "Tailwind CSS IntelliSense", "Bootstrap IntelliSense", "Code Runner", "C# dev kit", "Jinja", "Jinja snippets"
+- remove "sticky scroll" from vscode at view > appearance > sticky-scroll
+
+---
+### Install Flutter SDK:
+- Install tar: `tar -xf ~/Downloads/flutter_linux_3.22.1-stable.tar.xz -C $HOME/bin/`
+- export the flutter path: `export PATH="$PATH:$HOME/bin/flutter/bin" # flutter`
+- install linux-tool chain: `sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev`
+- Android studio will also include android sdk.
+- first add 32-bit architecture using: `sudo dpkg --add-architecture i386` and `sudo apt-get update`
+- Extract .tar.gz file of android studio to bin: `tar -xzf android-studio-2023.3.1.19-linux.tar.gz -C $HOME/bin/`
+- run studio.sh file to run adnroid studio and install android sdk using android studio at `$HOME/bin/Android/SDK/`
+- install android-command-line via android studio's sdkmanager and also accept license
+- install screen copy to get live mobile view in laptop: `sudo apt install scrcpy`
+
+
+### Install php, laravel and apache server:
+- install php: `sudo apt install php-common libapache2-mod-php php-cli`
+- install php-mysql and php-curl: `sudo apt install php-mysql php-curl`
+- install xampp installer from official website: [website](https://www.apachefriends.org/index.html)
+- run the installer using `chmod +x xampp-linux-x64-8.2.12-0-installer.run` and `sudo ./xampp-linux-x64-8.2.12-0-installer.run`, xampp will be installed at `/opt/lampp/`
+- To install laravel install composer: `sudo apt install composer`
+
+### Install wireshark:
+- add stable official PPA: `sudo add-apt-repository ppa:wireshark-dev/stable` and `sudo apt-get update`
+- `sudo apt-get install wireshark` say yes in dialogue box
+
+### Install PuTTY:
+- `sudo add-apt-repository universe` and `sudo apt update`
+- `sudo apt install anydesk`
+
+### install anydesk:
+- `wget http://ftp.de.debian.org/debian/pool/main/g/gtkglext/libgtkglext1_1.2.0-11_amd64.deb`
+- `sudo dpkg -i libgtkglext1_1.2.0-11_amd64.deb`
+- `sudo dpkg -i anydesk_6.3.2-1_amd64.deb`
+
+### Firewall configs:
+- `sudo ufw enable`
+- `sudo ufw allow 5000`
+
+### Install Nginx:
+- `sudo apt update` and `sudo apt install nginx`
+
+### Install Typora:
+- `sudo wget -qO - https://typoraio.cn/linux/public-key.asc | sudo tee /etc/apt/trusted.gpg.d/typora.asc`
+- `sudo add-apt-repository 'deb https://typora.io/linux ./'`
+- `sudo apt-get update` and `sudo apt-get install typora`
+
+### Installing HTTPS certificates:
+- `sudo apt-get install software-properties-common`
+- `sudo add-apt-repository ppa:certbot/certbot` and `sudo apt-get update`
+- `sudo apt-get install certbot`
+
+### installed `JupyterLab Desktop` from app store
+
+### installed orange using orangeenv at ~ and `sudo apt install qtbase5-dev qt5-qmake`
+- start orange with `source /home/soham/orangeenv/bin/activate` and `python -m Orange.canvas`
+
+### Configure and install MySQL:
+- add apt reposetory: `sudo dpkg -i Downloads/mysql-apt-config_0.8.32-1_all.deb` and `sudo apt update`
+- `sudo apt install mysql-server` (used "soham" for mysql password) and `sudo systemctl disable mysql`
+- `sudo snap install mysql-workbench-community`
+- use: `mysql -u root -p` to enter mysql shell, use `sudo systemctl <action> mysql` to start/stop/restart as actions.
+- to delete mysql, purge every package using `sudo dpkg -P <package_name>` that shown on `sudo dpkg -l | grep mysql`
+- connect to mysql using python:
+```python
+import mysql.connector
+from mysql.connector import Error
+
+def connect():
+    """ Connect to MySQL database """
+    conn = None
+    try:
+        conn = mysql.connector.connect(
+            host='localhost',
+            database='experimental',  # Replace with your database name
+            user='root',      # Replace with your MySQL username
+            password='soham'   # Replace with your MySQL password
+        )
+        if conn.is_connected():
+            print('Connected to MySQL database')
+
+            # Create a cursor object using cursor() method
+            cursor = conn.cursor()
+
+            # Create table query
+            create_table_query = """
+            CREATE TABLE IF NOT EXISTS employees (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                first_name VARCHAR(50) NOT NULL,
+                last_name VARCHAR(50) NOT NULL,
+                email VARCHAR(100) UNIQUE,
+                hire_date DATE
+            )
+            """
+
+            # Execute the create table SQL command
+            cursor.execute(create_table_query)
+            print("Table 'employees' created successfully")
+
+            # Insert some sample data
+            insert_query = """
+            INSERT INTO employees (first_name, last_name, email, hire_date)
+            VALUES (%s, %s, %s, %s)
+            """
+            data = ('John', 'Doe', 'john.doe@email.com', '2023-01-01')
+            cursor.execute(insert_query, data)
+            conn.commit()
+            print("Sample data inserted into 'employees' table")
+
+    except Error as e:
+        print(e)
+
+    finally:
+        if conn is not None and conn.is_connected():
+            conn.close()
+            print('Disconnected from MySQL database')
+
+if __name__ == '__main__':
+    connect()
+```
+- the database is optional to specify when connecting.
+
+### Configure and install mongodb:
+- Install mongodb-compass deb file: `sudo dpkg -i mongodb-compass_1.43.0_amd64.deb`
+- `curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor`
+- `echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/7.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list`
+- `sudo apt update`
+- `sudo apt-get install -y mongodb-org`
+- `sudo systemctl disable mongod` and `sudo systemctl <action> mongod`
+- to uninstall: `sudo apt-get purge "mongodb-org*"`
+- Connect with python:
+```python
+# Importing pymongo library
+from pymongo import MongoClient
+
+# MongoDB connection string (replace this with your MongoDB connection string)
+# Replace 'localhost' with your MongoDB host address and port if necessary
+mongo_uri = "mongodb://localhost:27017/"
+
+# Function to connect to MongoDB
+def connect_to_mongodb():
+    try:
+        # Connect to MongoDB server
+        client = MongoClient(mongo_uri)
+
+        # Print MongoDB server information
+        print(f"Connected to MongoDB server: {client.server_info()}")
+
+        # Return the MongoClient object
+        return client
+
+    except Exception as e:
+        print(f"Error connecting to MongoDB: {e}")
+        return None
+
+# Function to perform operations with MongoDB
+def main():
+    # Connect to MongoDB
+    client = connect_to_mongodb()
+
+    if client:
+        try:
+            # Accessing a database (replace 'sampledb' with your database name)
+            db = client.experimental
+
+            # Accessing a collection within the database (replace 'users' with your collection name)
+            collection = db.users
+
+            # Inserting documents into the collection
+            users_data = [
+                {"name": "Alice", "age": 30, "email": "alice@example.com"},
+                {"name": "Bob", "age": 25, "email": "bob@example.com"},
+                {"name": "Charlie", "age": 35, "email": "charlie@example.com"}
+            ]
+            result = collection.insert_many(users_data)
+
+            # Printing inserted document ids
+            print(f"Inserted {len(result.inserted_ids)} documents.")
+
+            # Querying documents from the collection
+            print("Documents in 'users' collection:")
+            for user in collection.find():
+                print(user)
+
+        finally:
+            # Disconnect from MongoDB
+            client.close()
+            print("Disconnected from MongoDB.")
+
+if __name__ == "__main__":
+    main()
+```
+- By default, a MongoDB instance stores:
+    - its data files in /var/lib/mongodb
+    - its log files in /var/log/mongodb
+    
+- By default, MongoDB runs using the mongodb user account. If you change the user that runs the MongoDB process, you must also modify the permission to the /var/lib/mongodb and /var/log/mongodb directories to give this user access to these directories.
+
+- Breadcrumbs: `mongod --dbpath` to change dbpath, you can also configure dbpath at monogd.conf as well. example: `mongod --dbpath=yourdirectory\data\db`
+
+### install and configure Azure Data Studio:
+- install `sudo dpkg -i azuredatastudio-linux-1.48.1.deb`
+- run `azuredatastudio`
+
+### install and configure Docker:
+```
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+- `sudo systemctl stop docker.socket` and `sudo systemctl stop docker.socket` to stop everything
+- `sudo docker run hello-world` to check if everything is working correctly
+
+### Install and configure mssql using docker:
+- `sudo docker pull mcr.microsoft.com/mssql/server:2022-latest`
+- `sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Darshan@123" \
+   -p 1433:1433 --name sql1 --hostname sql1 \
+   -d \
+   mcr.microsoft.com/mssql/server:2022-latest`
+   
+- check if everything is working ok: `sudo docker exec -t sql1 cat /var/opt/mssql/log/errorlog | grep connection` the output should have a message like `SQL Server is now ready for client connections. This is an informational message; no user action is required`
+
+- connect to container via bash terminal: `sudo docker exec -it sql1 "bash"`
+- run sqlcmd inside container: `sudo /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Darshan@123"`
+- If exited from container then start it again by: `sudo docker start <container_id>`  # you can find container id by running `sudo docker ps -a` 
+- Copy the "ODBC Driver 17 for SQL Server" and its configuration from container:
+```
+sudo apt install libodbc2
+mkdir /opt/microsoft
+sudo docker cp <container_id>:/opt/microsoft/msodbcsql17 /opt/microsoft/  # you can find container id by running `sudo docker ps -a`
+cd /opt/microsoft/msodbcsql17/lib64
+sudo chmod +x libmsodbcsql-17.10.so.6.1
+
+# now just copy the content of /etc/odbcinst.ini file from inside the container and paste it to /etc/odbcinst.ini inside the main host.
+```
+- connect the python with mssql-server:
+```
+import pyodbc
+
+# Define the connection string
+server = '172.17.0.1,1433'  # Replace with your server name
+database = 'TestDB'  # Replace with your database name
+username = 'sa'  # Replace with your username
+password = 'Darshan@123'  # Replace with your password
+driver = '{ODBC Driver 17 for SQL Server}'  # Driver depends on your SQL Server installation
+connection_string = f'SERVER={server};DATABASE={database};UID={username};PWD={password};DRIVER={driver}'
+
+# Connect to the database
+try:
+    conn = pyodbc.connect(connection_string)
+    cursor = conn.cursor()
+
+    # Execute a query
+    query = 'SELECT * FROM Inventory;'
+    cursor.execute(query)
+
+    # Fetch and print the results
+    for row in cursor.fetchall():
+        print(row)
+
+    # Clean up
+    cursor.close()
+    conn.close()
+
+except pyodbc.Error as e:
+    print(f'Error connecting to database: {e}')
+```
